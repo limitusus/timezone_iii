@@ -17,30 +17,35 @@
 # limitations under the License.
 
 case node['os']
-when 'linux'
-  package value_for_platform_family(
-    gentoo: 'timezone-data',
-    default: 'tzdata'
-  )
-  case node['platform_family']
-  when 'rhel', 'fedora'
-    include_recipe node['platform_version'].split('.')[0].to_i >= 7 ? 'timezone_iii::rhel7' : 'timezone_iii::rhel'
-  when 'debian', 'pld', 'amazon'
-    include_recipe "timezone_iii::#{node['platform_family']}"
-  else
-    # Load the generic Linux recipe if there's no better known way to change the
-    # timezone.  Log a warning (unless this is known to be the best way on a
-    # particular platform).
-    message = "Linux platform '#{node['platform']}' is unknown to this recipe; using generic Linux method"
-    log message do
-      level :warn
-      not_if { %w(centos gentoo rhel amazon).include? node['platform_family'] }
-      only_if { node['os'] == 'linux' }
+  when 'linux'
+    package value_for_platform_family(
+      gentoo:  'timezone-data',
+      suse:    'timezone',
+      default: 'tzdata'
+    )
+    case node['platform_family']
+      when 'suse'
+        include_recipe "timezone_iii::#{node['platform_family']}"
+      when 'rhel', 'fedora'
+        include_recipe node['platform_version'].split('.')[0].to_i >= 7 ? 'timezone_iii::rhel7' : 'timezone_iii::rhel'
+      when 'amazon'
+        include_recipe "timezone_iii::#{node['platform_family']}"
+      when 'debian', 'pld'
+        include_recipe "timezone_iii::#{node['platform_family']}"
+      else
+        # Load the generic Linux recipe if there's no better known way to change the
+        # timezone.  Log a warning (unless this is known to be the best way on a
+        # particular platform).
+        message = "Linux platform '#{node['platform']}' is unknown to this recipe; using generic Linux method"
+        log message do
+          level :warn
+          not_if { %w[centos gentoo rhel amazon].include? node['platform_family'] }
+          only_if { node['os'] == 'linux' }
+        end
+        include_recipe 'timezone_iii::linux_generic'
     end
-    include_recipe 'timezone_iii::linux_generic'
-  end
-when 'windows'
-  include_recipe 'timezone_iii::windows'
-else
-  raise 'OS Unsuported'
+  when 'windows'
+    include_recipe 'timezone_iii::windows'
+  else
+    raise 'OS Unsuported'
 end
