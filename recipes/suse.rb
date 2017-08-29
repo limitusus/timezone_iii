@@ -2,7 +2,7 @@
 # Cookbook:: timezone_iii
 # Recipe:: suse
 #
-# Copyright:: 2017, Siemens PLM Software
+# Copyright:: 2017, Brad Beveridge
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,10 +23,10 @@ template '/etc/sysconfig/clock' do
   owner 'root'
   group 'root'
   mode '0644'
-  notifies :run, 'execute[tzdata-update]'
+  notifies :run, 'execute[tz-update]'
 end
 
-execute 'tzdata-update' do
+execute 'tz-update' do
   command "/usr/sbin/zic -l #{node['timezone_iii']['timezone']}"
   action :nothing
 end
