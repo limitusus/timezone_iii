@@ -4,7 +4,7 @@ maintainer_email 'hemminger@hotmail.com'
 license 'Apache-2.0'
 description 'Configures the timezone for node'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '1.0.4'
+version '1.0.5'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
 # The `issues_url` points to the location where issues for this cookbook are
