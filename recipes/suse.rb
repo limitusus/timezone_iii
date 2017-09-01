@@ -18,10 +18,10 @@
 
 # This sets the timezone on SUSE distributions
 
-v_major, v_minor = node['platform_version'].split(/\./)
+v_major, _v_minor = node['platform_version'].split(/\./)
 
 template '/etc/sysconfig/clock' do
-  source v_major = 11 ? 'suse/clock.suse11.erb' : 'suse/clock.erb''
+  source v_major.to_i == 11 ? 'suse/clock.suse11.erb' : 'suse/clock.erb'
   owner 'root'
   group 'root'
   mode '0644'
@@ -32,5 +32,3 @@ execute 'tz-update' do
   command "/usr/sbin/zic -l #{node['timezone_iii']['timezone']}"
   action :nothing
 end
-
-
