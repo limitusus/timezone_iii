@@ -19,7 +19,7 @@ issues_url 'https://github.com/Stromweld/timezone_iii/issues'
 #
 source_url 'https://github.com/Stromweld/timezone_iii'
 
-%w(amazon centos debian fedora gentoo ubuntu pld redhat windows).each do |os|
+%w[amazon centos debian fedora gentoo ubuntu pld redhat suse windows].each do |os|
   supports os
 end
 
