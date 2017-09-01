@@ -30,7 +30,7 @@ default['timezone_iii']['localtime_path'] = '/etc/localtime'
 
 # Whether to use a symlink to tzdata (instead of copying).
 # Used only in the linux-default recipe.
-default['timezone_iii']['use_symlink'] = true
+default['timezone_iii']['use_symlink'] = false
 
 # Platform:            SUSE
 # Type:                string(-u,--utc,--localtime)

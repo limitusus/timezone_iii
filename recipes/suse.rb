@@ -21,7 +21,7 @@
 v_major, _v_minor = node['platform_version'].split(/\./)
 
 template '/etc/sysconfig/clock' do
-  source v_major.to_i == 11 ? 'suse/clock.suse11.erb' : 'suse/clock.erb'
+  v_major.to_i == 11 ? source 'suse/clock.suse11.erb' : source 'suse/clock.erb'
   owner 'root'
   group 'root'
   mode '0644'
