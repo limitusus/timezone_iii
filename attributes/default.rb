@@ -18,7 +18,7 @@
 
 # Use universal time if no other timezone is specified
 default['timezone_iii']['timezone'] = value_for_platform_family(
-  debian: 'Etc/UTC',
+  debian:  'Etc/UTC',
   default: 'UTC'
 )
 
@@ -31,3 +31,28 @@ default['timezone_iii']['localtime_path'] = '/etc/localtime'
 # Whether to use a symlink to tzdata (instead of copying).
 # Used only in the linux-default recipe.
 default['timezone_iii']['use_symlink'] = false
+
+# Platform:            SUSE
+# Type:                string(-u,--utc,--localtime)
+# ServiceRestart:      boot.clock
+# Command:             /sbin/refresh_initrd
+#
+# Set to "-u" if your system clock is set to UTC, and to "--localtime"
+# if your clock runs that way.
+#
+default['timezone_iii']['hwclock'] = '--localtime'
+
+# Platform:            SUSE
+# Type:                yesno
+# Default:             yes
+# Description: Write back system time to the hardware clock
+
+# Is set to "yes" write back the system time to the hardware
+# clock at reboot or shutdown. Usefull if hardware clock is
+# much more inaccurate than system clock.  Set to "no" if
+# system time does it wrong due e.g. missed timer interrupts.
+# If set to "no" the hardware clock adjust feature is also
+# skipped because it is rather useless without writing back
+# the system time to the hardware clock.
+#
+default['timezone_iii']['systohc'] = 'yes'

@@ -21,20 +21,19 @@
 
 TIMEZONE_FILE = '/etc/timezone'.freeze
 
-if File.file?('/etc/localtime') then
-  bash 'check-localtime' do
-    user 'root'
-    cwd '/tmp'
-    code <<-EOH
-    ls -la /etc/localtime >> /tmp/check.txt
-    if grep #{node['timezone_iii']['timezone']} /tmp/check.txt ; then
-      echo "Nothing to do!!!"
-    else
-      rm /etc/localtime
-    fi
-    rm /tmp/check.txt
-    EOH
-  end
+bash 'check-localtime' do
+  user 'root'
+  cwd '/tmp'
+  only_if { File.exist?('/etc/localtime') }
+  code <<-EOH
+  ls -la /etc/localtime >> /tmp/check.txt
+  if grep #{node['timezone_iii']['timezone']} /tmp/check.txt ; then
+    echo "Nothing to do!!!"
+  else
+    rm /etc/localtime
+  fi
+  rm /tmp/check.txt
+  EOH
 end
 
 template TIMEZONE_FILE do

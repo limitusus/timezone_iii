@@ -1,8 +1,8 @@
 #
 # Cookbook:: timezone_iii
-# Spec:: default
+# Recipe:: suse
 #
-# Copyright:: 2017, Corey Hemminger
+# Copyright:: 2017, Brad Beveridge
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,19 +16,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'spec_helper'
+# This sets the timezone on SUSE distributions
 
-describe 'timezone_iii::default' do
-  context 'When all attributes are default, on an Ubuntu 16.04' do
-    let(:chef_run) do
-      # for a complete list of available platforms and versions see:
-      # https://github.com/customink/fauxhai/blob/master/PLATFORMS.md
-      runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '16.04')
-      runner.converge(described_recipe)
-    end
+v_major, _v_minor = node['platform_version'].split(/\./)
 
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
-    end
-  end
+template '/etc/sysconfig/clock' do
+  source v_major.to_i == 11 ? 'suse/clock.suse11.erb' : 'suse/clock.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  notifies :run, 'execute[tz-update]'
+end
+
+execute 'tz-update' do
+  command "/usr/sbin/zic -l #{node['timezone_iii']['timezone']}"
+  action :nothing
 end
