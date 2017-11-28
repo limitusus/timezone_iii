@@ -8,6 +8,8 @@ The Timezone III cookbook contains recipes for installing the latest tzdata (a.k
 
 ## Requirements
 
+Amazon Linux should use chef-client 13. The default recipe picks the correct recipe to run based on node['platform_family']. In chef-client 13 ohai assigns amazon as it's own platform_family instead of rhel in previous chef-clients.
+
 This cookbook is known to work with:
 
 * Amazon Linux
