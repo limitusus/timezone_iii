@@ -28,6 +28,7 @@ It _should_ work with any OS that uses the IANA/Olson timezone database and stor
 | Attribute | Default | Comment |
 | -------------  | -------------  | -------------  |
 | ['timezone_iii']['timezone'] | 'value_for_platform_family(debian: 'Etc/UTC', default: 'UTC')' | String, timezone to set OS to |
+| ['timezone_iii']['clock_utc'] | `nil` | String(true,false), UTC setting in /etc/sysconfig/clock (RHEL family only) |
 | ['timezone_iii']['tzdata_dir'] | '/usr/share/zoneinfo' | String, the path to the root of the tzdata files; the default value is for most known distributions of Linux |
 | ['timezone_iii']['localtime_path'] | '/etc/localtime' | String, the path to the file used by the kernel to read the local timezone's settings; the default works for Linux and other *ix variants |
 | ['timezone_iii']['use_symlink'] | false | Boolean, whether to use a symlink into the tzdata tree rather than make a copy of the appropriate timezone data file (amazon and linux_generic recipes only) |
