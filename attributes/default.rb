@@ -22,6 +22,12 @@ default['timezone_iii']['timezone'] = value_for_platform_family(
   default: 'UTC'
 )
 
+# Platform Family:     RHEL
+# Type:                string(true,false)
+
+# When 'true', write "UTC=true" line in /etc/sysconfig/clock.
+default['timezone_iii']['clock_utc'] = nil
+
 # Path to tzdata directory
 default['timezone_iii']['tzdata_dir'] = '/usr/share/zoneinfo'
 
