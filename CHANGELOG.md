@@ -1,5 +1,11 @@
 # CHANGELOG for timezone_ii
 
+## 1.1.1 (12/1/2017)
+
+- [BradBeveridge] - Added Suse Support
+- [patkar] - Fixed Debian script interpolation
+- [limitusus] - Added UTC attribute to rhel template
+
 ## 1.0.4 (6/6/2017)
 
 - [badsector3] - Temp fix for recent Ubuntu releases with local time file overriding timezone file
