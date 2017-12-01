@@ -2,6 +2,10 @@
 
 ## 1.1.1 (12/1/2017)
 
+- [borgified] - Fixed rhel7 execute resource idempotency
+
+## 1.1.1 (12/1/2017)
+
 - [BradBeveridge] - Added Suse Support
 - [patkar] - Fixed Debian script interpolation
 - [limitusus] - Added UTC attribute to rhel template
