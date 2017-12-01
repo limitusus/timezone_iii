@@ -1,6 +1,6 @@
 # CHANGELOG for timezone_ii
 
-## 1.1.1 (12/1/2017)
+## 1.1.2 (12/1/2017)
 
 - [borgified] - Fixed rhel7 execute resource idempotency
 
