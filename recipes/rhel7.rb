@@ -17,7 +17,9 @@
 # limitations under the License.
 
 # This sets the timezone on EL 7 distributions (e.g. RedHat and CentOS)
-execute "timedatectl --no-ask-password set-timezone #{node['timezone_iii']['timezone']}"
+execute "timedatectl --no-ask-password set-timezone #{node['timezone_iii']['timezone']}" do
+  not_if "timedatectl status | awk '/Time zone:/ {print $3}' | grep -w #{node['timezone_iii']['timezone']}"
+end
 
 template '/etc/sysconfig/clock' do
   source 'rhel/clock.erb'
