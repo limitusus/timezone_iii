@@ -1,4 +1,4 @@
 ZONE="<%= node['timezone_iii']['timezone'] %>"
 <% unless node['timezone_iii']['clock_utc'].nil? -%>
-UTC=<%= node['timezone']['clock_utc'] %>
+UTC=<%= node['timezone_iii']['clock_utc'] %>
 <% end %>
