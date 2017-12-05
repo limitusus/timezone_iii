@@ -1,5 +1,9 @@
 # CHANGELOG for timezone_ii
 
+## 1.1.3 (12/4/2017)
+
+- [limitusus] - Fixed typo in template attribute
+
 ## 1.1.2 (12/1/2017)
 
 - [borgified] - Fixed rhel7 execute resource idempotency
