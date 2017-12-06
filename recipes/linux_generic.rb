@@ -34,7 +34,6 @@ if node['timezone_iii']['use_symlink']
     to timezone_data_file
     owner 'root'
     group 'root'
-    mode '0644'
   end
 
 else
