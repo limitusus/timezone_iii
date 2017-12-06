@@ -1,5 +1,9 @@
 # CHANGELOG for timezone_ii
 
+## 1.1.4 (12/6/2017)
+
+- [limitusus] - Fixed idempotency to be more chef like in generic-linux recipe
+
 ## 1.1.3 (12/4/2017)
 
 - [limitusus] - Fixed typo in template attribute
