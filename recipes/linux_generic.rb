@@ -24,10 +24,9 @@ localtime_path = node['timezone_iii']['localtime_path']
 
 ruby_block 'confirm timezone' do
   block do
-    unless File.exist?(timezone_data_file)
-      raise "Can't find #{timezone_data_file}!"
-    end
+    raise "Can't find #{timezone_data_file}!"
   end
+  not_if { File.exist?(timezone_data_file) }
 end
 
 if node['timezone_iii']['use_symlink']
@@ -35,7 +34,6 @@ if node['timezone_iii']['use_symlink']
     to timezone_data_file
     owner 'root'
     group 'root'
-    mode '0644'
   end
 
 else
