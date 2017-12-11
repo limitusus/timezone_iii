@@ -21,19 +21,15 @@
 
 TIMEZONE_FILE = '/etc/timezone'.freeze
 
-bash 'check-localtime' do
-  user 'root'
-  cwd '/tmp'
-  only_if { File.exist?('/etc/localtime') }
-  code <<-EOH
-  ls -la /etc/localtime >> /tmp/check.txt
-  if grep #{node['timezone_iii']['timezone']} /tmp/check.txt ; then
-    echo "Nothing to do!!!"
-  else
-    rm /etc/localtime
-  fi
-  rm /tmp/check.txt
-  EOH
+file 'remove-wrong-localtime-link' do
+  path '/etc/localtime'
+  action :delete
+  manage_symlink_source false
+  only_if {
+    File.exist?('/etc/localtime') &&
+      !File.symlink?('/etc/localtime') ||
+      !File.readlink('/etc/localtime').include?(node['timezone_iii']['timezone'])
+  }
 end
 
 template TIMEZONE_FILE do
