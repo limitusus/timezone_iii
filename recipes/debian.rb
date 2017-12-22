@@ -27,8 +27,7 @@ file 'remove-wrong-localtime-link' do
   manage_symlink_source false
   only_if {
     File.exist?('/etc/localtime') &&
-      !File.symlink?('/etc/localtime') ||
-      !File.readlink('/etc/localtime').include?(node['timezone_iii']['timezone'])
+      File.read("/usr/share/zoneinfo/#{node['timezone_iii']['timezone']}") != File.read('/etc/localtime')
   }
 end
 
