@@ -1,5 +1,9 @@
 # CHANGELOG for timezone_ii
 
+## 1.1.5 (12/27/2017)
+
+- [limitusus] - Fixed debian recipe resource to be more chef like.
+
 ## 1.1.4 (12/6/2017)
 
 - [limitusus] - Fixed idempotency to be more chef like in generic-linux recipe
