@@ -1,5 +1,9 @@
 # CHANGELOG for timezone_ii
 
+## 1.1.6 (12/30/2017)
+
+- [limitusus] - Removed unnecessary RHEL7 recipe resources
+
 ## 1.1.5 (12/27/2017)
 
 - [limitusus] - Fixed debian recipe resource to be more chef like.
