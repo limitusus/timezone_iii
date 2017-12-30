@@ -1,4 +1,4 @@
-# CHANGELOG for timezone_ii
+# CHANGELOG for timezone_iii
 
 ## 1.1.6 (12/30/2017)
 
